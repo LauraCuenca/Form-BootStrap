@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Datos Personales</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styleForm.css">
+</head>
+<body class="d-flex flex-column h-100">
+    <div class="container custom-container mt-5 flex-grow-1">
+        <h1 class="mb-4">Formulario de Datos Personales</h1>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Ingrese su nombre">
+            </div>
+            <div class="form-group">
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="email" name="email" required placeholder="Ingrese su email">
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha de Nacimiento:</label>
+                <input type="date" class="form-control" id="fecha" name="fecha" required>
+            </div>
+            <div class="form-group">
+                <label for="pais">País de Residencia:</label>
+                <select class="form-control" id="pais" name="pais" required></select>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+
+        <button id="toggle-dark-mode" class="btn btn-secondary mt-3">Cambiar Modo</button>
+    </div>
+
+    <footer class="bd-footer py-3 mt-auto">
+        <div class="container text-center">
+            <span class="text-muted">&copy; Practica Bootcamp Cilsa.
+                <a href="https://github.com/LauraCuenca" target="_blank">Laura Cuenca</a>
+            </span>
+        </div>
+    </footer>
+
+<script>
+    var fechaInput = document.getElementById('fecha');
+    var fechaActual = new Date().toISOString().split('T')[0];
+    fechaInput.setAttribute('max', fechaActual);
+</script>
+<script>
+    function enableDarkMode() {
+        document.body.classList.add('dark-mode');
+        document.querySelector('.container').classList.add('dark-mode'); 
+    }
+
+    function disableDarkMode() {
+        document.body.classList.remove('dark-mode');
+        document.querySelector('.container').classList.remove('dark-mode'); 
+    }
+
+    document.getElementById('toggle-dark-mode').addEventListener('click', function() {
+        if (document.body.classList.contains('dark-mode')) {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+    });
+</script>
+    <script>
+        const paises = [
+            {code: "", name: "Seleccione un país"},
+            {code: "af", name: "Afganistán"},
+            {code: "al", name: "Albania"},
+            {code: "dz", name: "Argelia"},
+            {code: "ad", name: "Andorra"},
+            {code: "ao", name: "Angola"},
+            {code: "ar", name: "Argentina"},
+            {code: "am", name: "Armenia"},
+            {code: "au", name: "Australia"},
+            {code: "at", name: "Austria"},
+            {code: "az", name: "Azerbaiyán"},
+            {code: "bs", name: "Bahamas"},
+            {code: "bh", name: "Baréin"},
+            {code: "bd", name: "Bangladés"},
+            {code: "bb", name: "Barbados"},
+            {code: "by", name: "Bielorrusia"},
+            {code: "be", name: "Bélgica"},
+            {code: "bz", name: "Belice"},
+            {code: "bj", name: "Benín"},
+            {code: "bt", name: "Bután"},
+            {code: "bo", name: "Bolivia"},
+            {code: "ba", name: "Bosnia y Herzegovina"},
+            {code: "bw", name: "Botsuana"},
+            {code: "br", name: "Brasil"},
+            {code: "bn", name: "Brunéi"},
+            {code: "bg", name: "Bulgaria"},
+            {code: "bf", name: "Burkina Faso"},
+            {code: "bi", name: "Burundi"},
+            {code: "cv", name: "Cabo Verde"},
+            {code: "kh", name: "Camboya"},
+            {code: "cm", name: "Camerún"},
+            {code: "ca", name: "Canadá"},
+            {code: "cf", name: "República Centroafricana"},
+            {code: "td", name: "Chad"},
+            {code: "cl", name: "Chile"},
+            {code: "cn", name: "China"},
+            {code: "co", name: "Colombia"},
+            {code: "km", name: "Comoras"},
+            {code: "cg", name: "República del Congo"},
+            {code: "cd", name: "República Democrática del Congo"},
+            {code: "cr", name: "Costa Rica"},
+            {code: "hr", name: "Croacia"},
+            {code: "cu", name: "Cuba"},
+            {code: "cy", name: "Chipre"},
+            {code: "cz", name: "República Checa"},
+            {code: "dk", name: "Dinamarca"},
+            {code: "dj", name: "Yibuti"},
+            {code: "dm", name: "Dominica"},
+            {code: "do", name: "República Dominicana"},
+            {code: "ec", name: "Ecuador"},
+            {code: "eg", name: "Egipto"},
+            {code: "sv", name: "El Salvador"},
+            {code: "gq", name: "Guinea Ecuatorial"},
+            {code: "er", name: "Eritrea"},
+            {code: "ee", name: "Estonia"},
+            {code: "et", name: "Etiopía"},
+            {code: "fj", name: "Fiyi"},
+            {code: "fi", name: "Finlandia"},
+            {code: "fr", name: "Francia"},
+            {code: "ga", name: "Gabón"},
+            {code: "gm", name: "Gambia"},
+            {code: "ge", name: "Georgia"},
+            {code: "de", name: "Alemania"},
+            {code: "gh", name: "Ghana"},
+            {code: "gr", name: "Grecia"},
+            {code: "gd", name: "Granada"},
+            {code: "gt", name: "Guatemala"},
+            {code: "gn", name: "Guinea"},
+            {code: "gw", name: "Guinea-Bisáu"},
+            {code: "gy", name: "Guyana"},
+            {code: "ht", name: "Haití"},
+            {code: "hn", name: "Honduras"},
+            {code: "hu", name: "Hungría"},
+            {code: "is", name: "Islandia"},
+            {code: "in", name: "India"},
+            {code: "id", name: "Indonesia"},
+            {code: "ir", name: "Irán"},
+            {code: "iq", name: "Irak"},
+            {code: "ie", name: "Irlanda"},
+            {code: "il", name: "Israel"},
+            {code: "it", name: "Italia"},
+            {code: "ci", name: "Costa de Marfil"},
+            {code: "jm", name: "Jamaica"},
+            {code: "jp", name: "Japón"},
+            {code: "jo", name: "Jordania"},
+            {code: "kz", name: "Kazajistán"},
+            {code: "ke", name: "Kenia"},
+            {code: "ki", name: "Kiribati"},
+            {code: "kp", name: "Corea del Norte"},
+            {code: "kr", name: "Corea del Sur"},
+            {code: "kw", name: "Kuwait"},
+            {code: "kg", name: "Kirguistán"},
+            {code: "la", name: "Laos"},
+            {code: "lv", name: "Letonia"},
+            {code: "lb", name: "Líbano"},
+            {code: "ls", name: "Lesoto"},
+            {code: "lr", name: "Liberia"},
+            {code: "ly", name: "Libia"},
+            {code: "li", name: "Liechtenstein"},
+            {code: "lt", name: "Lituania"},
+            {code: "lu", name: "Luxemburgo"},
+            {code: "mk", name: "Macedonia del Norte"},
+            {code: "mg", name: "Madagascar"},
+            {code: "mw", name: "Malaui"},
+            {code: "my", name: "Malasia"},
+            {code: "mv", name: "Maldivas"},
+            {code: "ml", name: "Malí"},
+            {code: "mt", name: "Malta"},
+            {code: "mh", name: "Islas Marshall"},
+            {code: "mr", name: "Mauritania"},
+            {code: "mu", name: "Mauricio"},
+            {code: "mx", name: "México"},
+            {code: "fm", name: "Micronesia"},
+            {code: "md", name: "Moldavia"},
+            {code: "mc", name: "Mónaco"},
+            {code: "mn", name: "Mongolia"},
+            {code: "me", name: "Montenegro"},
+            {code: "ma", name: "Marruecos"},
+            {code: "mz", name: "Mozambique"},
+            {code: "mm", name: "Birmania"},
+            {code: "na", name: "Namibia"},
+            {code: "nr", name: "Nauru"},
+            {code: "np", name: "Nepal"},
+            {code: "nl", name: "Países Bajos"},
+            {code: "nz", name: "Nueva Zelanda"},
+            {code: "ni", name: "Nicaragua"},
+            {code: "ne", name: "Níger"},
+            {code: "ng", name: "Nigeria"},
+            {code: "no", name: "Noruega"},
+            {code: "om", name: "Omán"},
+            {code: "pk", name: "Pakistán"},
+            {code: "pw", name: "Palaos"},
+            {code: "pa", name: "Panamá"},
+            {code: "pg", name: "Papúa Nueva Guinea"},
+            {code: "py", name: "Paraguay"},
+            {code: "pe", name: "Perú"},
+            {code: "ph", name: "Filipinas"},
+            {code: "pl", name: "Polonia"},
+            {code: "pt", name: "Portugal"},
+            {code: "qa", name: "Catar"},
+            {code: "ro", name: "Rumania"},
+            {code: "ru", name: "Rusia"},
+            {code: "rw", name: "Ruanda"},
+            {code: "kn", name: "San Cristóbal y Nieves"},
+            {code: "lc", name: "Santa Lucía"},
+            {code: "vc", name: "San Vicente y las Granadinas"},
+            {code: "ws", name: "Samoa"},
+            {code: "sm", name: "San Marino"},
+            {code: "st", name: "Santo Tomé y Príncipe"},
+            {code: "sa", name: "Arabia Saudita"},
+            {code: "sn", name: "Senegal"},
+            {code: "rs", name: "Serbia"},
+            {code: "sc", name: "Seychelles"},
+            {code: "sl", name: "Sierra Leona"},
+            {code: "sg", name: "Singapur"},
+            {code: "sk", name: "Eslovaquia"},
+            {code: "si", name: "Eslovenia"},
+            {code: "sb", name: "Islas Salomón"},
+            {code: "so", name: "Somalia"},
+            {code: "za", name: "Sudáfrica"},
+            {code: "ss", name: "Sudán del Sur"},
+            {code: "es", name: "España"},
+            {code: "lk", name: "Sri Lanka"},
+            {code: "sd", name: "Sudán"},
+            {code: "sr", name: "Surinam"},
+            {code: "sz", name: "Esuatini"},
+            {code: "se", name: "Suecia"},
+            {code: "ch", name: "Suiza"},
+            {code: "sy", name: "Siria"},
+            {code: "tw", name: "Taiwán"},
+            {code: "tj", name: "Tayikistán"},
+            {code: "tz", name: "Tanzania"},
+            {code: "th", name: "Tailandia"},
+            {code: "tl", name: "Timor Oriental"},
+            {code: "tg", name: "Togo"},
+            {code: "to", name: "Tonga"},
+            {code: "tt", name: "Trinidad y Tobago"},
+            {code: "tn", name: "Túnez"},
+            {code: "tr", name: "Turquía"},
+            {code: "tm", name: "Turkmenistán"},
+            {code: "tv", name: "Tuvalu"},
+            {code: "ug", name: "Uganda"},
+            {code: "ua", name: "Ucrania"},
+            {code: "ae", name: "Emiratos Árabes Unidos"},
+            {code: "gb", name: "Reino Unido"},
+            {code: "us", name: "Estados Unidos"},
+            {code: "uy", name: "Uruguay"},
+            {code: "uz", name: "Uzbekistán"},
+            {code: "vu", name: "Vanuatu"},
+            {code: "va", name: "Ciudad del Vaticano"},
+            {code: "ve", name: "Venezuela"},
+            {code: "vn", name: "Vietnam"},
+            {code: "ye", name: "Yemen"},
+            {code: "zm", name: "Zambia"},
+            {code: "zw", name: "Zimbabue"}
+        ];
+
+        const selectPais = document.getElementById('pais');
+        paises.forEach(pais => {
+            const option = document.createElement('option');
+            option.value = pais.code;
+            option.textContent = pais.name;
+            selectPais.appendChild(option);
+        });
+    </script>
+</body>
+</html>
