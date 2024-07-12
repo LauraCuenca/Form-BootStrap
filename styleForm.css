@@ -65,9 +65,9 @@ label {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-    font-size: 16px; /* Asegura que todos tengan el mismo tamaño de fuente */
+    font-size: 16px; 
     flex: 1;
-    min-width: 300px; /* Añadir un ancho mínimo para mayor consistencia */
+    min-width: 300px; 
     max-width: 100%;
 }
 
